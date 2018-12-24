@@ -10,7 +10,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
+
+import com.alibaba.druid.pool.DruidDataSource;
 
 @Configuration
 @MapperScan("com.example.demo.*.dao")
@@ -29,9 +30,9 @@ public class DaoConfig {
     @Value("${jdbc.jdbcUrl}")
     private String jdbcUrl;
 	
-    @Bean
+	@Bean
     public DataSource dataSource() {
-    	DriverManagerDataSource dataSource = new DriverManagerDataSource();
+    	DruidDataSource dataSource = new DruidDataSource();
     	dataSource.setDriverClassName(driverClass);
     	dataSource.setUrl(jdbcUrl);
     	dataSource.setUsername(user);
@@ -40,17 +41,17 @@ public class DaoConfig {
     }
     
     @Bean
-    public DataSourceTransactionManager transactionManager() {
-    	return new DataSourceTransactionManager(dataSource());
+    public DataSourceTransactionManager transactionManager(DataSource dataSource) {
+    	return new DataSourceTransactionManager(dataSource);
     }
     
     @Bean
-    public SqlSessionFactory sqlSessionFactory() throws Exception {
+    public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
     	SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
     	org.apache.ibatis.session.Configuration cfg = new org.apache.ibatis.session.Configuration();
     	cfg.setMapUnderscoreToCamelCase(true);
     	sessionFactory.setConfiguration(cfg);
-    	sessionFactory.setDataSource(dataSource());
+    	sessionFactory.setDataSource(dataSource);
     	return sessionFactory.getObject();
     }
     

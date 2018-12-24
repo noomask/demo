@@ -4,20 +4,35 @@
 <meta charset="UTF-8">
 <title>字典管理</title>
 </head>
-<body bgcolor="aliceblue">
+<body bgcolor="aliceblue" id="frameContent">
+	<h1>1字典管理</h1>
 	<h1>字典管理</h1>
+	<h1>3字典管理</h1>
 	<h1>字典管理</h1>
+	<h1>5字典管理</h1>
 	<h1>字典管理</h1>
+	<h1>7字典管理</h1>
 	<h1>字典管理</h1>
+	<h1>9字典管理</h1>
 	<h1>字典管理</h1>
+	<h1>10字典管理</h1>
 	<h1>字典管理</h1>
+	<h1>11字典管理</h1>
 	<h1>字典管理</h1>
-	<h1>字典管理</h1>
-	<h1>字典管理</h1>
-	<h1>字典管理</h1>
+	<h1>13字典管</h1>
 </body>
 <script type="text/javascript">
-var hh=window.screen.availHeight -100;
-console.log(hh);
+function setIframeHeight(iframe) {
+	if (iframe) {
+		var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
+		if (iframeWin.document.body) {
+			iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
+		}
+	}
+};
+
+window.onload = function () {
+	setIframeHeight(document.getElementById('menuFrame'));
+};
 </script>
 </html>
