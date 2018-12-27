@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 import com.alibaba.druid.pool.DruidDataSource;
@@ -48,10 +49,8 @@ public class DaoConfig {
     @Bean
     public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
     	SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
-    	org.apache.ibatis.session.Configuration cfg = new org.apache.ibatis.session.Configuration();
-    	cfg.setMapUnderscoreToCamelCase(true);
-    	sessionFactory.setConfiguration(cfg);
     	sessionFactory.setDataSource(dataSource);
+    	sessionFactory.setConfigLocation(new ClassPathResource("mybatis-config.xml"));
     	return sessionFactory.getObject();
     }
     

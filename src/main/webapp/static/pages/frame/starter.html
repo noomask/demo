@@ -224,7 +224,7 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">菜单栏</li>
         <li class="active"><a href="../dict/dictList.html" target="menuFrame"><i class="fa fa-link"></i> <span>字典管理</span></a></li>
-        <li><a href="../user/userList.html" target="menuFrame""><i class="fa fa-link"></i> <span>用户管理</span></a></li>
+        <li><a href="../user/userList.html" target="menuFrame"><i class="fa fa-link"></i> <span>用户管理</span></a></li>
         <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>菜单管理</span>
             <span class="pull-right-container">
@@ -244,7 +244,7 @@
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper" >
-    <iframe id="menuFrame" name="menuFrame" src="main.html" style="overflow:visible;" scrolling="yes" frameborder="no" height="100%" width="100%"></iframe>
+    <iframe id="menuFrame" name="menuFrame" src="main.html"  scrolling="no" frameborder="0" height="100%" width="100%"></iframe>
   </div>
   <!-- /.content-wrapper -->
 
@@ -341,6 +341,32 @@
 <script src="../../adminlte/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="../../adminlte/dist/js/adminlte.min.js"></script>
 <script type="text/javascript">
+	var ifmMenu = document.getElementById('menuFrame');
+	var ifmMenuLen = 0;
+	function setIframeHeight(iframe) {
+	  if (!iframe) {
+	      return;
+	  }
+	  var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
+      if (!iframeWin.document.body) {
+		  return;    	  
+      }
+      var len = iframeWin.document.body.scrollHeight;
+	  if(ifmMenuLen == len){
+		 return;
+	  }
+	  iframe.contentWindow.onbeforeunload = function() {
+		  iframe.style.visibility = 'hidden';
+		  iframe.height = 'auto';
+      };
+	  iframe.height = len;
+	  iframe.style.visibility = 'visible';
+	  ifmMenuLen = len;
+	};
+	
+    setInterval(function(){
+    	setIframeHeight(ifmMenu);
+    }, 200)
 </script>
 </body>
 </html>
