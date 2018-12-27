@@ -1,4 +1,4 @@
-package com.example.demo.dict.dao;
+package com.example.demo.dict.mapper;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
-import com.example.demo.dict.entity.Dict;
+import com.example.demo.dict.pojo.Dict;
 
 public interface DictMapper {
 

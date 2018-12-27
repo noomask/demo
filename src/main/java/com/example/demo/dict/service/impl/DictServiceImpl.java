@@ -2,23 +2,24 @@ package com.example.demo.dict.service.impl;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Service;
 
 import com.example.demo.common.dto.DTOFactory;
 import com.example.demo.common.dto.JsonDto;
-import com.example.demo.dict.dao.DictMapper;
-import com.example.demo.dict.entity.Dict;
+import com.example.demo.dict.mapper.DictMapper;
+import com.example.demo.dict.pojo.Dict;
 import com.example.demo.dict.service.DictService;
 
 @Service
 public class DictServiceImpl implements DictService {
 
-	@Autowired
+	@Resource
 	private DictMapper dictMapper;
 	
 	@Override
-	public JsonDto getAlldict() {
+	public JsonDto getAll() {
 		List<Dict> list = dictMapper.selectAll();
 		return DTOFactory.getJsonDto("获取字典列表成功", list);
 	}
@@ -30,13 +31,13 @@ public class DictServiceImpl implements DictService {
 	}
 	
 	@Override
-	public JsonDto add(Dict dict) {
+	public JsonDto save(Dict dict) {
 		dictMapper.insert(dict);
 		return DTOFactory.getJsonDto("添加成功");
 	}
 
 	@Override
-	public JsonDto save(Dict dict) {
+	public JsonDto update(Dict dict) {
 		dictMapper.updateById(dict);
 		return DTOFactory.getJsonDto("修改成功");
 	}

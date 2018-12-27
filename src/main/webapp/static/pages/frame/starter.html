@@ -223,10 +223,14 @@
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">菜单栏</li>
-        <li class="active"><a href="../dict/dictList.html" target="menuFrame"><i class="fa fa-link"></i> <span>字典管理</span></a></li>
-        <li><a href="../user/userList.html" target="menuFrame"><i class="fa fa-link"></i> <span>用户管理</span></a></li>
+        <li class="active">
+        	<a href="../menu/menuList.html" target="menuFrame">
+        		<i class="fa fa-link"></i> <span>菜单管理</span>
+        	</a>
+        </li>
+        <li><a href="../user/userList.html" target="menuFrame"><i class="fa fa-link"></i> <span>字典管理</span></a></li>
         <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>菜单管理</span>
+          <a href="#"><i class="fa fa-link"></i> <span>用户管理</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
@@ -341,32 +345,33 @@
 <script src="../../adminlte/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="../../adminlte/dist/js/adminlte.min.js"></script>
 <script type="text/javascript">
-	var ifmMenu = document.getElementById('menuFrame');
-	var ifmMenuLen = 0;
-	function setIframeHeight(iframe) {
-	  if (!iframe) {
-	      return;
-	  }
-	  var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
-      if (!iframeWin.document.body) {
-		  return;    	  
-      }
-      var len = iframeWin.document.body.scrollHeight;
-	  if(ifmMenuLen == len){
-		 return;
-	  }
-	  iframe.contentWindow.onbeforeunload = function() {
-		  iframe.style.visibility = 'hidden';
-		  iframe.height = 'auto';
-      };
-	  iframe.height = len;
-	  iframe.style.visibility = 'visible';
-	  ifmMenuLen = len;
-	};
-	
-    setInterval(function(){
-    	setIframeHeight(ifmMenu);
-    }, 200)
+    /* var menuFrame = document.getElementById('menuFrame');
+
+    menuFrame.onload = function() {
+    	setIframeHeight(menuFrame);
+	}
+    
+    function setIframeHeight(iframe){
+    	iframe.contentWindow.onbeforeunload = function() {
+    		iframe.style.visibility = 'hidden';
+    		iframe.setAttribute('height', 'auto');
+        };
+        iframe.setAttribute('height', iframe.contentWindow.document.body.scrollHeight);
+        iframe.style.visibility = 'visible';
+    } */
+    
+    function reinitIframe(){
+    	var iframe = document.getElementById("menuFrame");
+    	try{
+	    	var bHeight = iframe.contentWindow.document.body.scrollHeight;
+	    	var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
+	    	var height = Math.max(bHeight, dHeight);
+	    	iframe.height = height;
+    	}catch (ex){}
+    }
+    window.setInterval(function(){
+    	reinitIframe();
+    }, 200);
 </script>
 </body>
 </html>

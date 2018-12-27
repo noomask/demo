@@ -15,7 +15,7 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import com.alibaba.druid.pool.DruidDataSource;
 
 @Configuration
-@MapperScan("com.example.demo.*.dao")
+@MapperScan("com.example.demo.*.mapper")
 @PropertySource("classpath:jdbc.properties")
 public class DaoConfig {
 	

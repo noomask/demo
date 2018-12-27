@@ -1,39 +1,60 @@
-package com.example.demo.dict.entity;
+package com.example.demo.menu.pojo;
 
 import java.util.Date;
 
-public class Dict {
+/**
+ * 菜单
+ * @author ANNION
+ *
+ */
+public class Menu {
 
 	/**
-	 * ID
+	 *主键ID
 	 */
 	private Integer id;
 	/**
-	 * 父ID
+	 *父ID
 	 */
 	private Integer pid;
 	/**
-	 * 名称
+	 *菜单名称
 	 */
 	private String name;
 	/**
-	 * 添加人
+	 *菜单地址
+	 */
+	private String menuUrl;
+	/**
+	 *菜单图标
+	 */
+	private String icon;
+	/**
+	 *是否显示：1->显示；0->不显示;
+	 */
+	private Integer isShow;
+	/**
+	 *显示顺序
+	 */
+	private Integer viewOrder;
+	/**
+	 *添加人
 	 */
 	private Integer addUser;
 	/**
-	 * 修改人	
+	 *修改人
 	 */
 	private Integer updUser;
 	/**
-	 * 添加时间
+	 *添加时间
 	 */
 	private Date addDate;
 	/**
-	 * 修改时间
+	 *修改时间
 	 */
 	private Date updDate;
 	/**
-	 * 删除标识：1->未删除；0->已删除；
+	 *删除标识：1->未删除；0->已删除；
 	 */
 	private Integer delFlag;
 	
@@ -54,6 +75,30 @@ public class Dict {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public String getMenuUrl() {
+		return menuUrl;
+	}
+	public void setMenuUrl(String menuUrl) {
+		this.menuUrl = menuUrl;
+	}
+	public String getIcon() {
+		return icon;
+	}
+	public void setIcon(String icon) {
+		this.icon = icon;
+	}
+	public Integer getIsShow() {
+		return isShow;
+	}
+	public void setIsShow(Integer isShow) {
+		this.isShow = isShow;
+	}
+	public Integer getViewOrder() {
+		return viewOrder;
+	}
+	public void setViewOrder(Integer viewOrder) {
+		this.viewOrder = viewOrder;
 	}
 	public Integer getAddUser() {
 		return addUser;

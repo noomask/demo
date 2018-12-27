@@ -1,5 +1,7 @@
 <html>
 <body>
-<h2>Hello World!</h2>
+<script type="text/javascript">
+	location.href = '<%=request.getContextPath()%>/static/pages/frame/starter.html';
+</script>
 </body>
 </html>
