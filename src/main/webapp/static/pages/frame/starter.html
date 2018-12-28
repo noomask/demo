@@ -345,33 +345,22 @@
 <script src="../../adminlte/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="../../adminlte/dist/js/adminlte.min.js"></script>
 <script type="text/javascript">
-    /* var menuFrame = document.getElementById('menuFrame');
-
-    menuFrame.onload = function() {
-    	setIframeHeight(menuFrame);
+	var menuFrame = document.getElementById('menuFrame');
+	
+	function setIframeHeight(iframe){
+		if(!iframe){
+			return;
+		}
+		var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
+        if (!iframeWin.document.body) {
+        	return;
+        }
+        iframe.height = iframeWin.document.body.scrollHeight;
 	}
-    
-    function setIframeHeight(iframe){
-    	iframe.contentWindow.onbeforeunload = function() {
-    		iframe.style.visibility = 'hidden';
-    		iframe.setAttribute('height', 'auto');
-        };
-        iframe.setAttribute('height', iframe.contentWindow.document.body.scrollHeight);
-        iframe.style.visibility = 'visible';
-    } */
-    
-    function reinitIframe(){
-    	var iframe = document.getElementById("menuFrame");
-    	try{
-	    	var bHeight = iframe.contentWindow.document.body.scrollHeight;
-	    	var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
-	    	var height = Math.max(bHeight, dHeight);
-	    	iframe.height = height;
-    	}catch (ex){}
-    }
-    window.setInterval(function(){
-    	reinitIframe();
-    }, 200);
+
+	window.setInterval(function(){
+		setIframeHeight(menuFrame);
+    }, 200); 
 </script>
 </body>
 </html>
