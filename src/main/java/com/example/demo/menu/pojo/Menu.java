@@ -32,11 +32,15 @@ public class Menu {
 	/**
 	 *是否显示：1->显示；0->不显示;
 	 */
-	private Integer isShow;
+	private Integer show;
 	/**
 	 *显示顺序
 	 */
 	private Integer viewOrder;
+	/**
+	 * 备注
+	 */
+	private String remark;
 	/**
 	 *添加人
 	 */
@@ -88,11 +92,11 @@ public class Menu {
 	public void setIcon(String icon) {
 		this.icon = icon;
 	}
-	public Integer getIsShow() {
-		return isShow;
+	public Integer getShow() {
+		return show;
 	}
-	public void setIsShow(Integer isShow) {
-		this.isShow = isShow;
+	public void setShow(Integer show) {
+		this.show = show;
 	}
 	public Integer getViewOrder() {
 		return viewOrder;
@@ -129,6 +133,12 @@ public class Menu {
 	}
 	public void setDelFlag(Integer delFlag) {
 		this.delFlag = delFlag;
+	}
+	public String getRemark() {
+		return remark;
+	}
+	public void setRemark(String remark) {
+		this.remark = remark;
 	}
 	
 }
