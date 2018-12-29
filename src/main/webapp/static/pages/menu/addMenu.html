@@ -66,7 +66,7 @@
                 <div class="form-group">
                   <label for="menuName" class="col-sm-2 control-label">菜单名称</label>
                   <div class="col-sm-8">
-                    <input type="text" class="form-control" id="menuName" placeholder="菜单名称">
+                    <input type="text" class="form-control" id="name" placeholder="菜单名称">
                   </div>
                 </div>
                 <div class="form-group">
@@ -132,36 +132,60 @@
 <script src="../../adminlte/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../adminlte/dist/js/demo.js"></script>
+<script src="../../plugins/layer/layer.js"></script>
 <script type="text/javascript">
+
+	var basePath = getContextPath();
+
+	function getContextPath(){ 
+		var pathName = document.location.pathname; 
+		var index = pathName.substr(1).indexOf("/"); 
+		var result = pathName.substr(0,index+1); 
+		return result; 
+	} 
 
 	$('#addMenu').click(function(){
 		saveMenu();
+		return;
 	});
 
 	function saveMenu(){
 		//获取参数
 		var pid = $('#pid').val();
-		var name = $('#menuName').val();
+		var name = $('#name').val();
 		var icon = $('#icon').val();
 		var menuUrl = $('#menuUrl').val();
 		var viewOrder = $('#viewOrder').val();
 		var remark = $('#remark').val();
 		var show = $('#show').prop('checked') == true ? 1 : 0;
 		//参数校验
-		console.log(name == "");
-		if(name == ""){
-			alert('菜单名称必填');
+		if(name == ''){
+			layer.msg('菜单名称必填'); 
+			return;
 		}
 		//转换为请求参数
 		var data = {
-				"pid":pid,
-				"name":name,
-				"icon":icon,
-				"menuUrl":menuUrl,
-				"viewOrder":viewOrder,
-				"remark":remark,
-				"show":show
+				'pid': pid,
+				'name': name,
+				'icon': icon,
+				'menuUrl': menuUrl,
+				'viewOrder': viewOrder,
+				'remark': remark,
+				'show': show,
+				'addUser': 9527
 		}
+		$.ajax({
+			type: 'POST',
+			url: basePath + '/api/menus',
+			contentType: 'application/json',
+			data: JSON.stringify(data),
+			success: function(res){
+				console.log(res);
+			},
+			error: function(e){
+				console.log(e);
+			}
+		});
 	}
 	
 </script>

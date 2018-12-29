@@ -7,5 +7,6 @@
 		<setting name="mapUnderscoreToCamelCase" value="true"/>
 	</settings>
 	<typeAliases>
+		<package name="com.example.demo.menu.pojo"/>
 	</typeAliases>
 </configuration>

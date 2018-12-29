@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.example.demo.menu.mapper.MenuMapper">
+  
+  	<insert id="insert" parameterType="Menu">
+  		INSERT INTO t_menu (
+  			pid,name,menu_url,icon,`show`,view_order,add_user,add_date
+  		)VALUES(
+  			#{pid},#{name},#{menuUrl},#{icon},#{show},#{viewOrder},#{addUser},now()
+  		)
+  	</insert>
+  
+  </mapper>
