@@ -1,0 +1,75 @@
+/*
+* 添加字典
+* */
+
+//项目名称
+const basePath = getContextPath(); //取自common.js
+
+//所属父节点ID，如果为0表示为根节点
+const pid = getUrlParam('pid');
+
+//所属父节点名称
+const pname = decodeURI(getUrlParam('pname'));
+
+//页面加载完成后执行
+$(function(){
+    //判断是添加根节点还是字节点，并初始化对应页面状态
+    let $pid = $('#pid');
+    if(pid && pid == 0){
+        $pid.parent().parent().hide();
+    }else{
+        $pid.attr("disabled",true);
+        $pid.val(pname);
+    }
+});
+
+//为提交按键绑定点击事件
+$('#addDict').click(function(){
+    saveDict();
+});
+
+/**
+ * 提交保存
+ */
+function saveDict(){
+    //获取参数
+    let name = $('#name').val();
+    let remark = $('#remark').val();
+    let show = $('#show').prop('checked') == true ? 1 : 0;
+    //参数校验
+    if(name == ''){
+        layer.msg('节点名称必填');
+        return;
+    }
+    //转换为请求参数
+    let data = {
+        'pid': pid,
+        'name': name,
+        'remark': remark,
+        'show': show,
+        'addUser': 9527
+    };
+    $.ajax({
+        type: 'POST',
+        url: basePath + '/api/dict',
+        contentType: 'application/json',
+        data: JSON.stringify(data),
+        success: function(res){
+            if(res.success){
+                location.href = 'dictList.html';
+            }else{
+                layer.open({
+                    title: '失败'
+                    ,content: res.msg
+                });
+            }
+        },
+        error: function(e){
+            layer.open({
+                title: '异常'
+                ,content: '提交失败，请重试或联系系统管理员'
+            });
+            console.log(e);
+        }
+    });
+}

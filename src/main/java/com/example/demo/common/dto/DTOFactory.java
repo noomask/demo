@@ -12,6 +12,10 @@ public class DTOFactory {
 		return getJsonDto(true, msg, data);
 	}
 	
+	public static JsonDto getJsonDto(boolean success, String msg) {
+		return getJsonDto(success, msg, null);
+	}
+	
 	public static JsonDto getJsonDto(boolean success, String msg, Object data) {
 		JsonDto dto = new JsonDto();
 		dto.setSucess(success);

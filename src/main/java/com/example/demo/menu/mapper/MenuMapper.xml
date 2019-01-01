@@ -6,10 +6,25 @@
   
   	<insert id="insert" parameterType="Menu">
   		INSERT INTO t_menu (
-  			pid,name,menu_url,icon,`show`,view_order,add_user,add_date
+  			name,menu_url,icon,
+  			<if test="pid != null">pid,</if>
+  			<if test="show != null">`show`,</if>
+  			<if test="viewOrder != null">view_order,</if>
+  			add_user,add_date
   		)VALUES(
-  			#{pid},#{name},#{menuUrl},#{icon},#{show},#{viewOrder},#{addUser},now()
+  			#{name},#{menuUrl},#{icon},
+  			<if test="pid != null">#{pid},</if>
+  			<if test="show != null">#{show},</if>
+  			<if test="viewOrder != null">#{viewOrder},</if>
+  			#{addUser},now()
   		)
   	</insert>
+  	
+  	<update id="updateById" parameterType="Menu">
+  		UPDATE t_menu 
+  		SET name = #{name}, icon = #{icon}, menu_url = #{menuUrl}, view_order = #{viewOrder},
+  			remark = #{remark}, `show` = #{show}
+  		WHERE id = #{id}
+  	</update>
   
   </mapper>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.example.demo.dict.mapper.DictMapper">
+  
+  	<update id="updateById" parameterType="Dict">
+  		UPDATE t_dict 
+  		SET 
+  			name = #{name},
+  			<if test="remark != null">
+  				remark = #{remark}, 
+  			</if>
+  			<if test="show != null">
+  				`show` = #{show}, 
+  			</if>
+  			upd_user = #{updUser}, upd_date = now() 
+  		WHERE id = #{id}
+  	</update>
+  
+  </mapper>

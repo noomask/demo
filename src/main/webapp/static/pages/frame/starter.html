@@ -183,7 +183,7 @@
             </ul>
           </li>
           <!-- Control Sidebar Toggle Button -->
-          <li>
+          <li style="display: none;">
             <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
           </li>
         </ul>
@@ -209,7 +209,7 @@
       </div>
 
       <!-- search form (Optional) -->
-      <form action="#" method="get" class="sidebar-form">
+      <form action="#" method="get" class="sidebar-form" style="display: none;">
         <div class="input-group">
           <input type="text" name="q" class="form-control" placeholder="查找...">
           <span class="input-group-btn">
@@ -221,25 +221,7 @@
       <!-- /.search form -->
 
       <!-- Sidebar Menu -->
-      <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">菜单栏</li>
-        <li class="active">
-        	<a href="../menu/menuList.html" target="menuFrame">
-        		<i class="fa fa-link"></i> <span>菜单管理</span>
-        	</a>
-        </li>
-        <li><a href="../user/userList.html" target="menuFrame"><i class="fa fa-link"></i> <span>字典管理</span></a></li>
-        <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>用户管理</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#">Link in level 2</a></li>
-            <li><a href="#">Link in level 2</a></li>
-          </ul>
-        </li>
+      <ul class="sidebar-menu" data-widget="tree" id="menuRoot">
       </ul>
       <!-- /.sidebar-menu -->
     </section>
@@ -248,7 +230,7 @@
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper" >
-    <iframe id="menuFrame" name="menuFrame" src="main.html"  scrolling="no" frameborder="0" height="100%" width="100%"></iframe>
+    <iframe id="menuFrame" name="menuFrame" src="main.html"  scrolling="no" frameborder="0" style="vertical-align:bottom" height="100%" width="100%"></iframe>
   </div>
   <!-- /.content-wrapper -->
 
@@ -344,23 +326,7 @@
 <script src="../../adminlte/bower_components/jquery/dist/jquery.min.js"></script>
 <script src="../../adminlte/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="../../adminlte/dist/js/adminlte.min.js"></script>
-<script type="text/javascript">
-	var menuFrame = document.getElementById('menuFrame');
-	
-	function setIframeHeight(iframe){
-		if(!iframe){
-			return;
-		}
-		var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
-        if (!iframeWin.document.body) {
-        	return;
-        }
-        iframe.height = iframeWin.document.body.scrollHeight;
-	}
-
-	window.setInterval(function(){
-		setIframeHeight(menuFrame);
-    }, 200); 
-</script>
+<script src="../../js/common/common.js"></script>
+<script src="../../js/frame/starter.js"></script>
 </body>
 </html>

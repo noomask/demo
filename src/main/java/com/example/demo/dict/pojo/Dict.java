@@ -17,6 +17,14 @@ public class Dict {
 	 */
 	private String name;
 	/**
+	 * 备注
+	 */
+	private String remark;
+	/**
+	 * 是否启用
+	 */
+	private Integer show;
+	/**
 	 * 添加人
 	 */
 	private Integer addUser;
@@ -84,6 +92,18 @@ public class Dict {
 	}
 	public void setDelFlag(Integer delFlag) {
 		this.delFlag = delFlag;
+	}
+	public String getRemark() {
+		return remark;
+	}
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
+	public Integer getShow() {
+		return show;
+	}
+	public void setShow(Integer show) {
+		this.show = show;
 	}
 	
 }

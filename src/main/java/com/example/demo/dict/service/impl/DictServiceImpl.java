@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.common.dto.DTOFactory;
 import com.example.demo.common.dto.JsonDto;
@@ -37,13 +38,19 @@ public class DictServiceImpl implements DictService {
 	}
 
 	@Override
+	@Transactional
 	public JsonDto update(Dict dict) {
 		dictMapper.updateById(dict);
+		dictMapper.updateShow(dict);
 		return DTOFactory.getJsonDto("修改成功");
 	}
 
 	@Override
 	public JsonDto remove(int id) {
+		int count = dictMapper.countByPid(id);
+		if(count > 0) {
+			return DTOFactory.getJsonDto(false, "请先删除下级节点");
+		}
 		dictMapper.deleteById(id);
 		return DTOFactory.getJsonDto("删除成功");
 	}

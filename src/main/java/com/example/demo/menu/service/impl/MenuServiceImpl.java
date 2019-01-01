@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.common.dto.DTOFactory;
 import com.example.demo.common.dto.JsonDto;
@@ -37,13 +38,19 @@ public class MenuServiceImpl implements MenuService {
 	}
 
 	@Override
+	@Transactional
 	public JsonDto update(Menu menu) {
 		menuMapper.updateById(menu);
+		menuMapper.updateShow(menu);
 		return DTOFactory.getJsonDto("修改成功");
 	}
 
 	@Override
 	public JsonDto remove(int id) {
+		int count = menuMapper.countByPid(id);
+		if(count > 0) {
+			return DTOFactory.getJsonDto(false, "请先删除子菜单");
+		}
 		menuMapper.deleteById(id);
 		return DTOFactory.getJsonDto("删除成功");
 	}
