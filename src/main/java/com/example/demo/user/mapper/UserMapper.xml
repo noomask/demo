@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.example.demo.user.mapper.UserMapper">
+  
+  	<insert id="insert" parameterType="User">
+  		INSERT INTO t_user (
+  			add_user,
+  			<if test="account != null">account,</if>
+  			<if test="password != null">password,</if>
+  			<if test="name != null">name,</if>
+  			<if test="realName != null">real_name,</if>
+  			<if test="idCard != null">id_card,</if>
+  			<if test="sex != null">sex,</if>
+  			<if test="email != null">email,</if>
+  			<if test="phone != null">phone,</if>
+  			<if test="qq != null">qq,</if>
+  			<if test="wechat != null">wechat,</if>
+  			<if test="icon != null">icon,</if>
+  			add_date
+  		)VALUES(
+  			#{addUser},
+  			<if test="account != null">#{account},</if>
+  			<if test="password != null">#{password},</if>
+  			<if test="name != null">#{name},</if>
+  			<if test="realName != null">#{realName},</if>
+  			<if test="idCard != null">#{idCard},</if>
+  			<if test="sex != null">#{sex},</if>
+  			<if test="email != null">#{email},</if>
+  			<if test="phone != null">#{phone},</if>
+  			<if test="qq != null">#{qq},</if>
+  			<if test="wechat != null">#{wechat},</if>
+  			<if test="icon != null">#{icon},</if>
+  			now()
+  		)
+  	</insert>
+  	
+  	<update id="updateById" parameterType="User">
+  		UPDATE t_user
+  		SET 
+  			<if test="account != null">account = #{account},</if>
+  			<if test="password != null">password = #{password},</if>
+  			<if test="name != null">name = #{name},</if>
+  			<if test="realName != null">real_name = #{realName},</if>
+  			<if test="idCard != null">id_card = #{idCard},</if>
+  			<if test="sex != null">sex = #{sex},</if>
+  			<if test="email != null">email = #{email},</if>
+  			<if test="phone != null">phone = #{phone},</if>
+  			<if test="qq != null">qq = #{qq},</if>
+  			<if test="wechat != null">wechat = #{wechat},</if>
+  			<if test="icon != null">icon = #{icon},</if>
+  		WHERE id = #{id}
+  	</update>
+  
+  </mapper>

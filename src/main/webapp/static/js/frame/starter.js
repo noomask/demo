@@ -11,6 +11,11 @@ const basePath = getContextPath(); //取自common.js
 //异步加载菜单栏
 getMenus();
 
+//每200毫秒高度自适应刷新
+window.setInterval(function(){
+    setIframeHeight(menuFrame);
+}, 200);
+
 //设置iframe框架的高度自适应
 function setIframeHeight(iframe){
     if(!iframe){
@@ -24,11 +29,6 @@ function setIframeHeight(iframe){
     height = height > window.innerHeight - 101 ? height : window.innerHeight - 101;
     iframe.height = height;
 }
-
-//每200毫秒高度自适应刷新
-window.setInterval(function(){
-    setIframeHeight(menuFrame);
-}, 200);
 
 //构建菜单栏
 function buildMenu(data){
@@ -64,10 +64,17 @@ function getMenus(){
             if(res.success){
                 buildMenu(res.data);
             }else{
-                console.log(res.msg);
+            	layer.open({
+                    title: '失败'
+                    ,content: res.msg
+                });
             }
         },
         error: function(e){
+        	layer.open({
+                title: '异常'
+                ,content: '提交失败，请重试或联系系统管理员'
+            });
             console.log(e);
         }
     });
