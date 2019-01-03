@@ -39,6 +39,7 @@
   	<update id="updateById" parameterType="User">
   		UPDATE t_user
   		SET 
+  			upd_user = #{updUser},
   			<if test="account != null">account = #{account},</if>
   			<if test="password != null">password = #{password},</if>
   			<if test="name != null">name = #{name},</if>
@@ -50,6 +51,7 @@
   			<if test="qq != null">qq = #{qq},</if>
   			<if test="wechat != null">wechat = #{wechat},</if>
   			<if test="icon != null">icon = #{icon},</if>
+  			upd_date = now()
   		WHERE id = #{id}
   	</update>
   

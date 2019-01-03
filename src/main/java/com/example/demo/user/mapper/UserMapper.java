@@ -10,7 +10,7 @@ import com.example.demo.user.pojo.User;
 
 public interface UserMapper {
 
-	@Select("SELECT * FROM t_dict")
+	@Select("SELECT * FROM t_user")
 	List<User> selectAll();
 	
 	@Select("SELECT * FROM t_user WHERE id = #{id}")
@@ -18,9 +18,9 @@ public interface UserMapper {
 	
 	void insert(User user);
 	
-	void updateByid(User user);
+	void updateById(User user);
 	
-	@Delete("delete t_user WHERE id = #{id}")
+	@Delete("DELETE FROM t_user WHERE id = #{id}")
 	void deleteById(@Param("id") int id);
 	
 }

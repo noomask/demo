@@ -39,3 +39,27 @@ function getUrlParam(name) {
 function onCancel(url){
     location.href = url;
 }
+
+function ajaxGet(url, fn){
+    $.ajax({
+        type: 'GET',
+        url: basePath + '/api/' + url,
+        success: function(res){
+            if(res.success){
+            	fn(res.data);
+            }else{
+                layer.open({
+                    title: '失败'
+                    ,content: res.msg
+                });
+            }
+        },
+        error: function(e){
+            layer.open({
+                title: '异常'
+                ,content: '提交失败，请重试或联系系统管理员'
+            });
+            console.log(e);
+        }
+    });
+}

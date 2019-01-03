@@ -23,11 +23,11 @@ public class User {
 	/**
 	 *真实姓名
 	 */
-	private String real_name;
+	private String realName;
 	/**
 	 *身份证号
 	 */
-	private String id_card;
+	private String idCard;
 	/**
 	 *性别
 	 */
@@ -55,23 +55,23 @@ public class User {
 	/**
 	 *添加人
 	 */
-	private Integer add_user;
+	private Integer addUser;
 	/**
 	 *修改人
 	 */
-	private Integer upd_user;
+	private Integer updUser;
 	/**
 	 *添加时间
 	 */
-	private Date add_date;
+	private Date addDate;
 	/**
 	 *修改时间
 	 */
-	private Date upd_date;
+	private Date updDate;
 	/**
 	 *删除标识：1->未删除；0->已删除；
 	 */
-	private Integer del_flag;
+	private Integer delFlag;
 	
 	public Integer getId() {
 		return id;
@@ -97,17 +97,17 @@ public class User {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getReal_name() {
-		return real_name;
+	public String getRealName() {
+		return realName;
 	}
-	public void setReal_name(String real_name) {
-		this.real_name = real_name;
+	public void setRealName(String realName) {
+		this.realName = realName;
 	}
-	public String getId_card() {
-		return id_card;
+	public String getIdCard() {
+		return idCard;
 	}
-	public void setId_card(String id_card) {
-		this.id_card = id_card;
+	public void setIdCard(String idCard) {
+		this.idCard = idCard;
 	}
 	public Integer getSex() {
 		return sex;
@@ -145,35 +145,35 @@ public class User {
 	public void setIcon(String icon) {
 		this.icon = icon;
 	}
-	public Integer getAdd_user() {
-		return add_user;
+	public Integer getAddUser() {
+		return addUser;
 	}
-	public void setAdd_user(Integer add_user) {
-		this.add_user = add_user;
+	public void setAddUser(Integer addUser) {
+		this.addUser = addUser;
 	}
-	public Integer getUpd_user() {
-		return upd_user;
+	public Integer getUpdUser() {
+		return updUser;
 	}
-	public void setUpd_user(Integer upd_user) {
-		this.upd_user = upd_user;
+	public void setUpdUser(Integer updUser) {
+		this.updUser = updUser;
 	}
-	public Date getAdd_date() {
-		return add_date;
+	public Date getAddDate() {
+		return addDate;
 	}
-	public void setAdd_date(Date add_date) {
-		this.add_date = add_date;
+	public void setAddDate(Date addDate) {
+		this.addDate = addDate;
 	}
-	public Date getUpd_date() {
-		return upd_date;
+	public Date getUpdDate() {
+		return updDate;
 	}
-	public void setUpd_date(Date upd_date) {
-		this.upd_date = upd_date;
+	public void setUpdDate(Date updDate) {
+		this.updDate = updDate;
 	}
-	public Integer getDel_flag() {
-		return del_flag;
+	public Integer getDelFlag() {
+		return delFlag;
 	}
-	public void setDel_flag(Integer del_flag) {
-		this.del_flag = del_flag;
+	public void setDelFlag(Integer delFlag) {
+		this.delFlag = delFlag;
 	}
 	
 }

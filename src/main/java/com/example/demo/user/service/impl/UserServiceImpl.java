@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public JsonDto update(User user) {
-		userMapper.updateByid(user);
+		userMapper.updateById(user);
 		return DTOFactory.getJsonDto("修改用户信息成功");
 	}
 
