@@ -1,9 +1,6 @@
 /*
-* 菜单管理列表页
+* 用户管理列表页
 * */
-
-//项目名称
-var basePath = getContextPath(); //取自common.js
 
 //刷新表格
 function refreshTable(){
@@ -15,7 +12,7 @@ function refreshTable(){
         'info'        : false,
         'autoWidth'   : false,
         'language': {
-            'sEmptyTable': '未查询到数据'
+            'sEmptyTable': ' '
         }
     });
 }
@@ -60,29 +57,12 @@ function buildTable(data){
 //获取表格数据并加载
 ajaxGet('user', function(data){
 	buildTable(data);
+	refreshTable();
 });
 
-//通过ID删除对应的菜单
-function deleteMenu(id){
-    $.ajax({
-        type: 'DELETE',
-        url: basePath + '/api/menus/'+id,
-        success: function(res){
-            if(res.success){
-                location.href = 'menuList.html';
-            }else{
-                layer.open({
-                    title: '失败'
-                    ,content: res.msg
-                });
-            }
-        },
-        error: function(e){
-            layer.open({
-                title: '异常'
-                ,content: '提交失败，请重试或联系系统管理员'
-            });
-            console.log(e);
-        }
-    });
+//通过ID删除用户
+function deleteUser(id){
+	ajaxDelete('user/'+id, function(){
+		location.href = 'userList.html';
+	});
 }

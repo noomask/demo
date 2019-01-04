@@ -2,9 +2,6 @@
 * 修改菜单
 * */
 
-//项目名称
-const basePath = getContextPath(); //common.js
-
 //获取URL传递的参数
 const id = getUrlParam('id'); //common.js
 

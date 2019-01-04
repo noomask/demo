@@ -53,6 +53,10 @@ public class User {
 	 */
 	private String icon;
 	/**
+	 * 备注
+	 */
+	private String remark;
+	/**
 	 *添加人
 	 */
 	private Integer addUser;
@@ -174,6 +178,12 @@ public class User {
 	}
 	public void setDelFlag(Integer delFlag) {
 		this.delFlag = delFlag;
+	}
+	public String getRemark() {
+		return remark;
+	}
+	public void setRemark(String remark) {
+		this.remark = remark;
 	}
 	
 }

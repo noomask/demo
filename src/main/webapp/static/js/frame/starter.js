@@ -5,9 +5,6 @@
 //iframe框架
 const menuFrame = document.getElementById('menuFrame');
 
-//项目名称
-const basePath = getContextPath(); //取自common.js
-
 //异步加载菜单栏
 getMenus();
 

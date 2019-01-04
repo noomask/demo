@@ -2,9 +2,6 @@
 * 菜单管理列表页
 * */
 
-//项目名称
-var basePath = getContextPath(); //取自common.js
-
 //加载菜单表格
 getMenus();
 

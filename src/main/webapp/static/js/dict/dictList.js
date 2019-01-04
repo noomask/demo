@@ -2,9 +2,6 @@
 * 字典管理列表页
 * */
 
-//项目名称
-var basePath = getContextPath(); //取自common.js
-
 //加载字典表格
 getDict();
 

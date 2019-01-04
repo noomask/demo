@@ -2,9 +2,6 @@
 * 添加字典
 * */
 
-//项目名称
-const basePath = getContextPath(); //取自common.js
-
 //所属父节点ID，如果为0表示为根节点
 const pid = getUrlParam('pid');
 

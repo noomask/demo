@@ -51,6 +51,7 @@
   			<if test="qq != null">qq = #{qq},</if>
   			<if test="wechat != null">wechat = #{wechat},</if>
   			<if test="icon != null">icon = #{icon},</if>
+  			<if test="remark != null">remark = #{remark},</if>
   			upd_date = now()
   		WHERE id = #{id}
   	</update>

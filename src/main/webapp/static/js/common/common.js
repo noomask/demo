@@ -2,6 +2,9 @@
 * 通用工具
 * */
 
+//项目名称
+const basePath = getContextPath();
+
 /**
  * 获取项目名称
  * @returns {string}
@@ -47,6 +50,82 @@ function ajaxGet(url, fn){
         success: function(res){
             if(res.success){
             	fn(res.data);
+            }else{
+                layer.open({
+                    title: '失败'
+                    ,content: res.msg
+                });
+            }
+        },
+        error: function(e){
+            layer.open({
+                title: '异常'
+                ,content: '提交失败，请重试或联系系统管理员'
+            });
+            console.log(e);
+        }
+    });
+}
+
+function ajaxDelete(url, fn){
+    $.ajax({
+        type: 'DELETE',
+        url: basePath + '/api/'+url,
+        success: function(res){
+            if(res.success){
+                fn();
+            }else{
+                layer.open({
+                    title: '失败'
+                    ,content: res.msg
+                });
+            }
+        },
+        error: function(e){
+            layer.open({
+                title: '异常'
+                ,content: '提交失败，请重试或联系系统管理员'
+            });
+            console.log(e);
+        }
+    });
+}
+
+function ajaxPost(url, data, fn){
+	$.ajax({
+        type: 'POST',
+        url: basePath + '/api/' + url,
+        contentType: 'application/json',
+        data: JSON.stringify(data),
+        success: function(res){
+            if(res.success){
+                fn();
+            }else{
+                layer.open({
+                    title: '失败'
+                    ,content: res.msg
+                });
+            }
+        },
+        error: function(e){
+            layer.open({
+                title: '异常'
+                ,content: '提交失败，请重试或联系系统管理员'
+            });
+            console.log(e);
+        }
+    });
+}
+
+function ajaxPut(url, data, fn){
+	$.ajax({
+        type: 'PUT',
+        url: basePath + '/api/' + url,
+        contentType: 'application/json',
+        data: JSON.stringify(data),
+        success: function(res){
+            if(res.success){
+            	fn();
             }else{
                 layer.open({
                     title: '失败'
