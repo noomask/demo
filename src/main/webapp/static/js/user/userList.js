@@ -5,14 +5,23 @@
 //刷新表格
 function refreshTable(){
     var table = $('#userTable').DataTable({
-        'paging'      : false,
-        'lengthChange': false,
+        'paging'      : true,
+        'lengthChange': true,
         'searching'   : false,
         'ordering'    : false,
-        'info'        : false,
+        'info'        : true,
         'autoWidth'   : false,
+        //'serverSide': true,
         'language': {
-            'sEmptyTable': ' '
+            'sEmptyTable': '无数据',
+            'sInfo': '显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项',
+            'sInfoEmpty': '显示第 0 至 0 项结果，共 0 项',
+            'oPaginate': {
+                'sFirst': '首页',
+                'sPrevious': '上页',
+                'sNext': '下页',
+                'sLast': '末页'
+            }
         }
     });
 }
