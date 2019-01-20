@@ -1,5 +1,7 @@
 package com.example.demo.dict.service.impl;
 
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -12,6 +14,7 @@ import com.example.demo.common.dto.JsonDto;
 import com.example.demo.dict.mapper.DictMapper;
 import com.example.demo.dict.pojo.Dict;
 import com.example.demo.dict.service.DictService;
+import org.springframework.util.ObjectUtils;
 
 @Service
 public class DictServiceImpl implements DictService {
@@ -22,7 +25,30 @@ public class DictServiceImpl implements DictService {
 	@Override
 	public JsonDto getAll() {
 		List<Dict> list = dictMapper.selectAll();
-		return DTOs.getJson("获取字典列表成功", list);
+		if(ObjectUtils.isEmpty(list)) {
+			return DTOs.getJson("获取字典列表成功", list);
+		}
+		List<Integer> index = new LinkedList<>();
+		List<Dict> result = new LinkedList<Dict>();
+		boolean flag = true;
+		for (Dict dict : list) {
+			if(dict.getPid() == 0) {
+				result.add(dict);
+				index.add(dict.getId());
+				continue;
+			}
+			if(flag) {
+				Collections.reverse(result);
+				Collections.reverse(index);
+				flag = false;
+			}
+			int i = index.indexOf(dict.getPid());
+			if(i >= 0) {
+				result.add(i+1, dict);
+				index.add(i+1, dict.getId());
+			}
+		}
+		return DTOs.getJson("获取字典列表成功", result);
 	}
 
 	@Override

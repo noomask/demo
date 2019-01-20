@@ -48,10 +48,7 @@ public class MenuServiceImpl<V> implements MenuService {
 				index.add(i+1, menu.getId());
 			}
 		}
-		for (Menu menu : result) {
-			System.out.println(menu.getId()+":"+menu.getPid()+":"+menu.getName());
-		}
-		return DTOs.getJson("获取菜单列表成功", list);
+		return DTOs.getJson("获取菜单列表成功", result);
 	}
 
 	@Override

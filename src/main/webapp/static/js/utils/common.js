@@ -14,6 +14,7 @@ const language = {
 	    'sEmptyTable': '无数据',
 	    'sInfo': '显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项',
 	    'sInfoEmpty': '显示第 0 至 0 项结果，共 0 项',
+        'loadingRecords': '加载中...',
 	    'oPaginate': {
 	        'sFirst': '首页',
 	        'sPrevious': '上页',
@@ -171,4 +172,41 @@ function ajaxPut(url, data, fn){
             console.log(e);
         }
     });
+}
+
+/**
+ * 加载树表
+ * @param tableId
+ * @param columns
+ */
+function loadTreeTable(tableId, url, columns) {
+    $('#'+tableId).DataTable( {
+        'lengthChange': false,
+        'searching': false,
+        'ordering': false,
+        'info': false,
+        'paging': false,
+        'language': language,
+        'columns': columns,
+        "ajax": function(data, callback, settings){
+            ajaxGet(url, function (res) {
+                callback(res);
+                addTreegridClass(tableId, res.data);
+                $('#'+tableId).treegrid();
+            })
+        }
+    } );
+}
+
+/**
+ * 为树表添加treegrid标识
+ * @param tableId
+ * @param data
+ */
+function addTreegridClass(tableId,data){
+    let tr = $('#'+tableId+' tbody').find('tr');
+    for (let i=0;i<data.length;i++) {
+        $(tr[i]).addClass('treegrid-' + data[i].id);
+        $(tr[i]).addClass(data[i].pid > 0 ? 'treegrid-parent-' + data[i].pid : null);
+    }
 }
