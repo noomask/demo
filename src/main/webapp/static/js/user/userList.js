@@ -64,8 +64,8 @@ function buildTable(data){
 }
 
 //获取表格数据并加载
-ajaxGet('user', function(data){
-	buildTable(data);
+ajaxGet('user', function(res){
+	buildTable(res.data);
 	refreshTable();
 });
 

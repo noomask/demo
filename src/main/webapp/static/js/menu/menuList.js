@@ -2,8 +2,34 @@
 * 菜单管理列表页
 * */
 
+$(function(){
+	//1.加载菜单列表
+	loadMenu();
+});
+
+function loadMenu(){
+	$('#userTable').DataTable({
+		  'lengthChange': false,
+		  'searching'   : false,
+			'ordering'    : false,
+			'pagingType': 'numbers',
+		  'columns': columns,
+		  'language': language,
+    'serverSide': true,
+  	'ajax': function(data, callback, settings){
+  		ajaxGet('user' + attachParam({
+  			'draw': data.draw,
+  			'limit': data.start,
+  			'offset': data.length
+  		}), function(res){
+  			callback(res.data);
+  		});
+  	}
+  });
+}
+
 //加载菜单表格
-getMenus();
+//getMenus();
 
 //刷新表格
 function refreshTable(){

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.common.dto.JsonDto;
+import com.example.demo.common.dto.Page;
 import com.example.demo.user.pojo.User;
 import com.example.demo.user.service.UserService;
 
@@ -23,8 +24,8 @@ public class UserController {
 	private UserService userService;
 	
 	@GetMapping
-	public JsonDto getAllUser() {
-		return userService.getAll();
+	public JsonDto getPage(Page page) {
+		return userService.getPage(page);
 	}
 	
 	@GetMapping("/{id}")

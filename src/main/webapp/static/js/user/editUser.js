@@ -19,7 +19,8 @@ initUserInfo();
  * 初始化页面信息
  */
 function initUserInfo(){
-	ajaxGet('user/'+id, function(data){
+	ajaxGet('user/'+id, function(res){
+		let data = res.data;
 		$('#account').val(data.account);
 	    $('#name').val(data.name);
 	    $('#sex').val(data.sex);

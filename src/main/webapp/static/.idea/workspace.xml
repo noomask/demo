@@ -123,7 +123,7 @@
         <option value="$PROJECT_DIR$/css/common/css.css" />
         <option value="$PROJECT_DIR$/js/menu/menuList.js" />
         <option value="$PROJECT_DIR$/pages/menu/menuList.html" />
-        <option value="$PROJECT_DIR$/js/common/common.js" />
+        <option value="$PROJECT_DIR$/js/utils/common.js" />
         <option value="$PROJECT_DIR$/pages/menu/addMenu.html" />
         <option value="$PROJECT_DIR$/pages/frame/starter.html" />
         <option value="$PROJECT_DIR$/js/frame/starter.js" />
@@ -382,7 +382,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/common/common.js">
+    <entry file="file://$PROJECT_DIR$/js/utils/common.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="325">
           <caret line="13" column="1" lean-forward="true" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />

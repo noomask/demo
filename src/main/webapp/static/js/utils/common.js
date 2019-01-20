@@ -2,8 +2,25 @@
 * 通用工具
 * */
 
-//项目名称
+/**
+ * 项目名称
+ */
 const basePath = getContextPath();
+
+/**
+ * DataTable汉化参数
+ */
+const language = {
+	    'sEmptyTable': '无数据',
+	    'sInfo': '显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项',
+	    'sInfoEmpty': '显示第 0 至 0 项结果，共 0 项',
+	    'oPaginate': {
+	        'sFirst': '首页',
+	        'sPrevious': '上页',
+	        'sNext': '下页',
+	        'sLast': '末页'
+	    }
+	} 
 
 /**
  * 获取项目名称
@@ -43,13 +60,26 @@ function onCancel(url){
     location.href = url;
 }
 
+/**
+ * 拼接GET请求参数
+ * @param json
+ * @returns
+ */
+function attachParam(json){
+	let str = '?';
+	for(let k in json){
+		str = str + (json[k] ? k + '=' + json[k] + '&' : '') ;
+	}
+	return str.length > 1 ? str.substring(0, str.length-1) : '';
+}
+
 function ajaxGet(url, fn){
     $.ajax({
         type: 'GET',
         url: basePath + '/api/' + url,
         success: function(res){
             if(res.success){
-            	fn(res.data);
+            	fn(res);
             }else{
                 layer.open({
                     title: '失败'

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+</head>
+<body>
+	<table id="example" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Position</th>
+                <th>Office</th>
+                <th>Start date</th>
+                <th>Salary</th>
+            </tr>
+        </thead>
+ 
+        <tfoot>
+            <tr>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Position</th>
+                <th>Office</th>
+                <th>Start date</th>
+                <th>Salary</th>
+            </tr>
+        </tfoot>
+    </table>
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#example').DataTable({
+    	"processing": true,
+      "serverSide": true,
+      "columns": [
+          { "data": "name" },
+          { "data": "age" },
+          { "data": "office" },
+          { "data": "address" },
+          { "data": "date" },
+          { "data": "salary" }
+      ],
+    	'ajax': function(data, callback, settings){
+    		callback({
+    			"draw": 1,
+    		    "recordsTotal": 57,
+    		    "recordsFiltered": 57,
+    		    "data": [
+    		        {
+    		            "name":"Angelica",
+    		            "age":"Ramos",
+    		            "office":"System Architect",
+    		            "address":"London",
+    		            "date":"9th Oct 09",
+    		            "salary":"$2,875"
+    		        },
+    		        {
+    		            "name":"Ashton",
+    		            "age":"Cox",
+    		            "office":"Technical Author",
+    		            "address":"San Francisco",
+    		            "date":"12th Jan 09",
+    		            "salary":"$4,800"
+    		        }
+    		    ]
+    		});
+    	}
+    });
+} );
+</script>
+</body>
+</html>
