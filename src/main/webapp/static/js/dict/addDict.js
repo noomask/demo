@@ -18,11 +18,10 @@ $(function(){
         $pid.attr("disabled",true);
         $pid.val(pname);
     }
-});
-
-//为提交按键绑定点击事件
-$('#addDict').click(function(){
-    saveDict();
+    //为提交按键绑定点击事件
+    $('#addDict').click(function(){
+        saveDict();
+    });
 });
 
 /**
@@ -46,27 +45,8 @@ function saveDict(){
         'show': show,
         'addUser': 9527
     };
-    $.ajax({
-        type: 'POST',
-        url: basePath + '/api/dict',
-        contentType: 'application/json',
-        data: JSON.stringify(data),
-        success: function(res){
-            if(res.success){
-                location.href = 'dictList.html';
-            }else{
-                layer.open({
-                    title: '失败'
-                    ,content: res.msg
-                });
-            }
-        },
-        error: function(e){
-            layer.open({
-                title: '异常'
-                ,content: '提交失败，请重试或联系系统管理员'
-            });
-            console.log(e);
-        }
-    });
+    //提交
+    ajaxPost('dict', data, function () {
+        location.href = 'dictList.html';
+    })
 }

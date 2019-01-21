@@ -30,9 +30,7 @@ function operation(data, type, row, meta) {
         + '<span class="sr-only">Toggle Dropdown</span>'
         + '</button>'
         + '<ul class="dropdown-menu" role="menu">';
-    if (pid == 0) {
-        buttion = buttion + '<li><a href="addMenu.html?pid=' + id + '&pname=' + encodeURI(pname) + '">添加子菜单</a></li>';
-    }
+    buttion = buttion + '<li><a href="addMenu.html?pid=' + id + '&pname=' + encodeURI(pname) + '">添加子菜单</a></li>';
     buttion = buttion + '<li><a href="#" onclick="deleteMenu(' + id + ')">删除</a></li></ul></div>';
     return buttion;
 }

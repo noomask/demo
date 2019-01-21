@@ -84,38 +84,6 @@
 <script src="../../adminlte/dist/js/adminlte.min.js"></script>
 <script src="../../plugins/layer/layer.js"></script>
 <script src="../../js/utils/common.js"></script>
-<!-- <script src="../../js/user/userList.js"></script> -->
-<script type="text/javascript">
-const columns = [
-    { "data": "account" },
-    { "data": "name" },
-    { "data": "sex" },
-    { "data": "phone" },
-    { "data": "qq" },
-    { "data": "wechat" },
-    { "data": "id"}
-]
-
-$(function(){
-	$('#userTable').DataTable({
-		  'lengthChange': false,
-      'searching'   : false,
-			'ordering'    : false,
-			'pagingType': 'numbers',
-		  'columns': columns,
-		  'language': language,
-      'serverSide': true,
-    	'ajax': function(data, callback, settings){
-    		ajaxGet('user' + attachParam({
-    			'draw': data.draw,
-    			'limit': data.start,
-    			'offset': data.length
-    		}), function(res){
-    			callback(res.data);
-    		});
-    	}
-    });
-});
-</script>
+<script src="../../js/user/userList.js"></script>
 </body>
 </html>

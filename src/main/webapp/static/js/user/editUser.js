@@ -5,8 +5,8 @@
 //获取URL传递的参数
 const id = getUrlParam('id'); //common.js
 
-//为提交按钮绑定单机事件
 $(function(){
+    //为提交按钮绑定单机事件
     $('#updateUser').click(function(){
         updateUser();
     });

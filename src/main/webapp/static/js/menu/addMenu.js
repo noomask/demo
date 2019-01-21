@@ -11,21 +11,17 @@ const pname = decodeURI(getUrlParam('pname'));
 //页面加载完成后执行
 $(function(){
     //判断是添加一级菜单还是二级菜单，并初始化对应页面状态
-    let $menuUrl = $('#menuUrl');
     let $pid = $('#pid');
     if(pid && pid == 0){
         $pid.parent().parent().hide();
-        $menuUrl.attr("disabled",true);
-        $menuUrl.val('--');
     }else{
         $pid.attr("disabled",true);
         $pid.val(pname);
     }
-});
-
-//为提交按键绑定点击事件
-$('#addMenu').click(function(){
-    saveMenu();
+    //为提交按键绑定点击事件
+    $('#addMenu').click(function(){
+        saveMenu();
+    });
 });
 
 /**
@@ -58,27 +54,7 @@ function saveMenu(){
         'show': show,
         'addUser': 9527
     };
-    $.ajax({
-        type: 'POST',
-        url: basePath + '/api/menus',
-        contentType: 'application/json',
-        data: JSON.stringify(data),
-        success: function(res){
-            if(res.success){
-                location.href = 'menuList.html';
-            }else{
-                layer.open({
-                    title: '失败'
-                    ,content: res.msg
-                });
-            }
-        },
-        error: function(e){
-            layer.open({
-                title: '异常'
-                ,content: '提交失败，请重试或联系系统管理员'
-            });
-            console.log(e);
-        }
-    });
+    ajaxPost('menus', data, function () {
+        location.href = 'menuList.html';
+    })
 }

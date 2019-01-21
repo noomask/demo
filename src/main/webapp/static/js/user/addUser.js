@@ -2,9 +2,11 @@
 * 添加菜单栏
 * */
 
-//为提交按键绑定点击事件
-$('#addUser').click(function(){
-	saveUser();
+$(function () {
+    //为提交按键绑定点击事件
+    $('#addUser').click(function(){
+        saveUser();
+    });
 });
 
 /**
