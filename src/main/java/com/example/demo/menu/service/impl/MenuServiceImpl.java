@@ -52,6 +52,7 @@ public class MenuServiceImpl<V> implements MenuService {
 			privilege += r.getMenuPrivilege();
 		}
 		List<Menu> menus = menuMapper.selectSelfMenu(privilege);
+		menus = sortMenuList(menus);
         return DTOs.getJson("获取菜单列表成功", menus);
 	}
 
@@ -61,6 +62,11 @@ public class MenuServiceImpl<V> implements MenuService {
 		if(ObjectUtils.isEmpty(list)) {
 			return DTOs.getJson("获取菜单列表成功", list);
 		}
+		list = sortMenuList(list);
+		return DTOs.getJson("获取菜单列表成功", list);
+	}
+
+	private List<Menu> sortMenuList(List<Menu> list) {
 		List<Integer> index = new LinkedList<>();
 		List<Menu> result = new LinkedList<Menu>();
 		boolean flag = true;
@@ -81,7 +87,7 @@ public class MenuServiceImpl<V> implements MenuService {
 				index.add(i+1, menu.getId());
 			}
 		}
-		return DTOs.getJson("获取菜单列表成功", result);
+		return result;
 	}
 
 	@Override

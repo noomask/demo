@@ -17,7 +17,7 @@ public interface MenuMapper {
 	@Select("SELECT * FROM t_menu WHERE id = #{id}")
 	Menu selectById(@Param("id")int id);
 
-	@Select("SELECT * FROM t_menu WHERE id IN (${ids})")
+	@Select("SELECT * FROM t_menu WHERE id IN (${ids}) ORDER BY pid, view_order DESC, id DESC")
 	List<Menu> selectSelfMenu(@Param("ids") String ids);
 	
 	@Select("SELECT count(*) FROM t_menu WHERE pid = #{pid}")
