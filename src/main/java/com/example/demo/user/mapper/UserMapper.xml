@@ -64,5 +64,21 @@
   			upd_date = now()
   		WHERE id = #{id}
   	</update>
-  
+
+	<insert id="register" parameterType="User" keyProperty="id" keyColumn="id">
+		INSERT INTO t_user (account,password,salt,email,add_date) VALUES (#{account},#{password},#{salt},email,now())
+	</insert>
+
+	<select id="selectIsRegister" parameterType="User" resultType="User">
+		SELECT * FROM t_user
+		WHERE account = #{account}
+	</select>
+
+	<select id="selectForLogin" parameterType="User" resultType="User">
+		SELECT * FROM t_user
+		WHERE del_flag = 1
+		  <if test="account != null"> AND account = #{account}</if>
+		  <if test="phone != null"> AND phone = #{phone}</if>
+	</select>
+
   </mapper>

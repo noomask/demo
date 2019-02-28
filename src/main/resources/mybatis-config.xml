@@ -10,5 +10,6 @@
 		<package name="com.example.demo.menu.pojo"/>
 		<package name="com.example.demo.dict.pojo"/>
 		<package name="com.example.demo.user.pojo"/>
+		<package name="com.example.demo.role.pojo"/>
 	</typeAliases>
 </configuration>

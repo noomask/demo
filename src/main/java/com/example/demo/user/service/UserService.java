@@ -17,5 +17,9 @@ public interface UserService {
 	JsonDto update(User user);
 	
 	JsonDto removeById(int id);
-	
+
+	JsonDto register(User user);
+
+	JsonDto login(User user);
+
 }

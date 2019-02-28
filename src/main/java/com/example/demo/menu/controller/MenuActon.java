@@ -16,7 +16,7 @@ import com.example.demo.menu.pojo.Menu;
 import com.example.demo.menu.service.MenuService;
 
 @RestController
-@RequestMapping("menus")
+@RequestMapping("/menus")
 public class MenuActon {
 
 	@Resource
@@ -26,12 +26,17 @@ public class MenuActon {
 	public JsonDto getAllMenus() {
 		return menuService.getAll();
 	}
-	
+
 	@GetMapping("/{id}")
 	public JsonDto getMenuById(@PathVariable("id")int id) {
 		return menuService.getById(id);
 	}
-	
+
+	@GetMapping("/self")
+	public JsonDto getMenuByRole() {
+		return menuService.getSelf();
+	}
+
 	@PostMapping
 	public JsonDto saveMenu(@RequestBody Menu menu) {
 		return menuService.save(menu);

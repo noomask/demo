@@ -26,5 +26,11 @@ public interface UserMapper {
 	
 	@Delete("DELETE FROM t_user WHERE id = #{id}")
 	void deleteById(@Param("id") int id);
+
+	int register(User user);
+
+	User selectIsRegister(User user);
+
+	List<User> selectForLogin(User user);
 	
 }

@@ -5,7 +5,12 @@ import java.util.LinkedList;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
+import com.example.demo.common.Const;
+import com.example.demo.role.mapper.RoleMapper;
+import com.example.demo.role.pojo.Role;
+import com.example.demo.user.pojo.User;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
@@ -21,7 +26,35 @@ public class MenuServiceImpl<V> implements MenuService {
 
 	@Resource
 	private MenuMapper menuMapper;
-	
+
+	@Resource
+	private RoleMapper roleMapper;
+
+	@Resource
+	private HttpSession session;
+
+	@Override
+	public JsonDto getSelf() {
+		Object obj = session.getAttribute(Const.USERINFO);
+		if(obj == null){
+			return DTOs.getJson(false,"请登陆后访问");
+		}
+		User user = (User) obj;
+		if(ObjectUtils.isEmpty(user.getRole())){
+			return DTOs.getJson("获取菜单列表成功");
+		}
+		List<Role> roles = roleMapper.selectSelfRole(user.getRole());
+		if(ObjectUtils.isEmpty(roles)){
+			return DTOs.getJson("获取菜单列表成功");
+		}
+		String privilege = "";
+		for(Role r : roles){
+			privilege += r.getMenuPrivilege();
+		}
+		List<Menu> menus = menuMapper.selectSelfMenu(privilege);
+        return DTOs.getJson("获取菜单列表成功", menus);
+	}
+
 	@Override
 	public JsonDto getAll() {
 		List<Menu> list = menuMapper.selectAll();
@@ -79,6 +112,18 @@ public class MenuServiceImpl<V> implements MenuService {
 		}
 		menuMapper.deleteById(id);
 		return DTOs.getJson("删除成功");
+	}
+
+	@Override
+	public List<Menu> getParentList(int id) {
+		List<Menu> parent = menuMapper.getParentList(id);
+		return parent;
+	}
+
+	@Override
+	public List<Menu> getchildList(int id) {
+		List<Menu> child = menuMapper.getChildList(id);
+		return child;
 	}
 
 }

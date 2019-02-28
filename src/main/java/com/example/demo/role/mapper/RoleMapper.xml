@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.example.demo.role.mapper.RoleMapper">
+
+  	<insert id="insert" parameterType="Role">
+  		INSERT INTO t_role (
+  			add_user,
+  			<if test="name != null">name,</if>
+  			<if test="privilege != null">privilege,</if>
+  			<if test="remark != null">remark,</if>
+  			add_date
+  		)VALUES(
+  			#{addUser},
+  			<if test="name != null">#{name},</if>
+  			<if test="privilege != null">#{privilege},</if>
+  			<if test="remark != null">#{remark},</if>
+  			now()
+  		)
+  	</insert>
+  	
+  	<update id="updateById" parameterType="User">
+  		UPDATE t_role
+  		SET 
+  			upd_user = #{updUser},
+  			<if test="name != null">name = #{name},</if>
+  			<if test="privilege != null">privilege = #{password},</if>
+  			<if test="remark != null">remark = #{remark},</if>
+  			upd_date = now()
+  		WHERE id = #{id}
+  	</update>
+
+	<update id="updatePrivilege" parameterType="Role">
+		UPDATE t_role
+		SET
+			upd_user = #{updUser},
+			<if test="menuPrivilege != null">menu_privilege = #{menuPrivilege},</if>
+			<if test="modulePrivilege != null">module_privilege = #{modulePrivilege},</if>
+			<if test="dataPrivilege != null">data_privilege = #{dataPrivilege},</if>
+			<if test="visblePrivilege != null">visble_privilege = #{visblePrivilege},</if>
+			upd_date = now()
+	  	WHERE id = #{id}
+	</update>
+  
+  </mapper>

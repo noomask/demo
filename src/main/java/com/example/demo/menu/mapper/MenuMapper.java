@@ -16,6 +16,9 @@ public interface MenuMapper {
 	
 	@Select("SELECT * FROM t_menu WHERE id = #{id}")
 	Menu selectById(@Param("id")int id);
+
+	@Select("SELECT * FROM t_menu WHERE id IN (${ids})")
+	List<Menu> selectSelfMenu(@Param("ids") String ids);
 	
 	@Select("SELECT count(*) FROM t_menu WHERE pid = #{pid}")
 	int countByPid(@Param("pid")int pid);
@@ -24,10 +27,16 @@ public interface MenuMapper {
 	
 	void updateById(Menu menu);
 	
-	@Update("UPDATE t_menu SET `show`=#{show} WHERE FIND_IN_SET(id,getMenuChildById(#{id}))")
+	@Update("UPDATE t_menu SET `show`=#{show} WHERE FIND_IN_SET(id,getMenuChildList(#{id}))")
 	void updateShow(Menu menu);
 	
 	@Delete("DELETE FROM t_menu WHERE id = #{id}")
 	void deleteById(int id);
-	
+
+	@Select("SELECT * FROM t_menu WHERE FIND_IN_SET(id, getMenuParentList(#{id}))")
+	List<Menu> getParentList(@Param("id") int id);
+
+	@Select("SELECT * FROM t_menu WHERE FIND_IN_SET(id, getMenuChildList(#{id}))")
+	List<Menu> getChildList(@Param("id") int id);
+
 }

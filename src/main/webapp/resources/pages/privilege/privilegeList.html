@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <h3>功能权限</h3>
+    <h3>数据权限</h3>
+    <h3>样式权限</h3>
+
+<script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+<script src="../../plugins/layer/layer.js"></script>
+<script src="../../dist/js/utils/common.js"></script>
+<script>
+    ajaxGet('privileges', function (res) {
+        document.write(res.msg);
+    })
+</script>
+</body>
+</html>

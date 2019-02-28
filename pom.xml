@@ -97,6 +97,12 @@
 		    <artifactId>druid</artifactId>
 		    <version>1.1.12</version>
 		</dependency>
+		<!-- 常用工具类 -->
+		<dependency>
+			<groupId>cn.hutool</groupId>
+			<artifactId>hutool-all</artifactId>
+			<version>4.4.4</version>
+		</dependency>
 	</dependencies>
 
 	

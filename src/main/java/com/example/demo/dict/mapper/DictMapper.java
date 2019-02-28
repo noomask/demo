@@ -26,7 +26,7 @@ public interface DictMapper {
 	
 	void updateById(Dict dict);
 	
-	@Update("UPDATE t_dict SET `show`=#{show} WHERE FIND_IN_SET(id,getDictChildById(#{id}))")
+	@Update("UPDATE t_dict SET `show`=#{show} WHERE FIND_IN_SET(id,getDictChildList(#{id}))")
 	void updateShow(Dict dict);
 	
 	@Delete("DELETE FROM t_dict WHERE id = #{id}")

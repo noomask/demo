@@ -17,6 +17,14 @@ public class User {
 	 */
 	private String password;
 	/**
+	 * 密码加盐
+	 */
+	private String salt;
+	/**
+	 * 角色
+	 */
+	private String role;
+	/**
 	 *昵称
 	 */
 	private String name;
@@ -185,5 +193,16 @@ public class User {
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
-	
+	public String getSalt() {
+		return salt;
+	}
+	public void setSalt(String salt) {
+		this.salt = salt;
+	}
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
 }
